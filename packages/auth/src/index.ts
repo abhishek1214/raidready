@@ -17,6 +17,7 @@ export function initAuth(options: {
   const config = {
     database: drizzleAdapter(db, {
       provider: "pg",
+      usePlural: true
     }),
     baseURL: options.baseUrl,
     secret: options.secret,
@@ -37,7 +38,7 @@ export function initAuth(options: {
         redirectURI: `${options.productionUrl}/api/auth/callback/discord`,
       },
     },
-    trustedOrigins: ["expo://"],
+    trustedOrigins: ["expo://", "exp://"],
   } satisfies BetterAuthOptions;
 
   return betterAuth(config);
